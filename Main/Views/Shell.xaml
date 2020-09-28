@@ -1,0 +1,20 @@
+﻿<Window x:Class="Main.Views.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main.Views"
+        mc:Ignorable="d"
+        Height="450"        
+        Width="800"
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        Title="{Binding DisplayName}"
+        >
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="TEXT DEMO"></TextBlock>
+            <TextBlock Text="{Binding DisplayName, FallbackValue=\{TITLE\}}"></TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>
