@@ -24,8 +24,9 @@ namespace ModuleRight.ViewModels
 
         public DriveInfoViewModel(IEventAggregator ea)
         {
-            _ea = ea;
             DriveModel = new DriveInfoModel();
+
+            _ea = ea;
 
             _ea.GetEvent<MessageSentEvent>().Subscribe(MessageReceived);
         }

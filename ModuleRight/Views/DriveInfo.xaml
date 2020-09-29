@@ -4,24 +4,44 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ModuleRight.Views"
+             xmlns:bl="clr-namespace:Core.BL;assembly=Core"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True"  >
-
+    <UserControl.Resources>
+        <bl:SizeConvertor x:Key="mySizeConverter" />
+        <bl:SizeAllInfoConvertor x:Key="mySizesConverter" />
+        <bl:BrushColorConverter x:Key="myTextBlockColorConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0"  Text="{Binding DriveInfo.Name}" Margin="5"/>
-        <TextBox Grid.Row="1"  Text="{Binding DriveInfo.Caption}" Margin="5"/>
-        <TextBox Grid.Row="2"  Text="{Binding DriveInfo.DriveType}" Margin="5"/>
-    </Grid>
 
+        <TextBlock Margin="30 0 0 0"  Grid.Column="0" Grid.Row="0" Text="Label:" />
+        <TextBlock Margin="30 0 0 0" Grid.Column="0" Grid.Row="1" Text="Drive type:" />
+        <TextBlock Margin="30 0 0 0" Grid.Column="0" Grid.Row="2" Text="FileSystem:" />
+        <TextBlock Margin="30 0 0 0" Grid.Column="0" Grid.Row="3" Text="Free/Total space:" />
+        <TextBlock Margin="30 0 0 0" Grid.Column="1" Grid.Row="0" Text="{Binding DriveModel.Name, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Margin="30 0 0 0" Grid.Column="1" Grid.Row="1" Text="{Binding DriveModel.Type, UpdateSourceTrigger=PropertyChanged}"
+                           Foreground="{Binding DriveModel.Type, Mode=OneWay, Converter = {StaticResource myTextBlockColorConverter}}"/>
+        <TextBlock Margin="30 0 0 0" Grid.Column="1" Grid.Row="2" Text="{Binding DriveModel.FileSystem, UpdateSourceTrigger=PropertyChanged}" />
+
+        <TextBlock Margin="30 0 0 0" Grid.Column="1" Grid.Row="3">
+            <TextBlock.Text>
+                <MultiBinding  Converter="{StaticResource mySizesConverter}">
+                    <Binding Path="FreeSpace"/>
+                    <Binding Path="TotalSpace"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+    </Grid>
 </UserControl>

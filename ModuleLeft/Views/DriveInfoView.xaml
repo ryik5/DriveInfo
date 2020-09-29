@@ -15,17 +15,8 @@
         <bl:BrushColorConverter x:Key="myTextBlockColorConverter" />
     </UserControl.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-        <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        
-        <ListBox Grid.Column="0" Grid.Row="1" 
-                 ItemsSource="{Binding Collection}"
+        <ListBox 
+                 ItemsSource="{Binding DriveInfoCollection}"
                  SelectedItem="{Binding SelectedDriveInfo}">
 
             <ListBox.ItemTemplate>
@@ -51,7 +42,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button   Command="{Binding SendSelectedDriveInfoCommand}" Content="Send Message" Margin="5"/>
+        <!--Button   Command="{Binding SendSelectedDriveInfoCommand}" Content="Send Message" Margin="5"/-->
     </Grid>
 
 </UserControl>
