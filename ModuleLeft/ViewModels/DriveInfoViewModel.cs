@@ -34,74 +34,24 @@ namespace ModuleLeft.ViewModels
                 SetProperty(ref _driveInfo, value);
 
                 _ea.GetEvent<MessageSentEvent>().Publish(_driveInfo);
-
             }
         }
-
-        //public DelegateCommand SendSelectedDriveInfoCommand { get; private set; }
 
         public DriveInfoViewModel(IEventAggregator ea)
         {
-            DriveInfoCollection = new ObservableCollection<DriveInfoModel>();
-            foreach (var drive in drives.GetDrives())
-            {
-                DriveInfoCollection.Add(drive);
-            }
-
-            watcher = new ManagementEventWatcher();
-            Task.Run(() => WatchChanges(watcher));
+            //DriveInfoCollection = new ObservableCollection<DriveInfoModel>();
+            drives = new CollectDrives();
+            DriveInfoCollection = drives.driveList;
+            //foreach (var drive in drives.GetDrives())
+            //{
+            //    DriveInfoCollection.Add(drive);
+            //}
             
-
             _ea = ea;
-            //SendSelectedDriveInfoCommand = new DelegateCommand(PublishSelectedDriveInfo);
         }
+        
 
-        //private void PublishSelectedDriveInfo()
-        //{
-        //    _ea.GetEvent<MessageSentEvent>().Publish(SelectedDriveInfo);
-        //}
+        private  CollectDrives drives = new CollectDrives();
 
-
-
-
-        private readonly ManagementEventWatcher watcher;
-        private readonly CollectDrives drives = new CollectDrives();
-
-        private ManagementEventWatcher WatchChanges(ManagementEventWatcher watcher)
-        {
-            WqlEventQuery query = new WqlEventQuery("SELECT * FROM Win32_VolumeChangeEvent WHERE EventType = 2 OR EventType = 3");
-            watcher.EventArrived += new EventArrivedEventHandler(watcher_EventArrived);
-            watcher.Query = query;
-            watcher.Start();
-            watcher.WaitForNextEvent();
-            return watcher;
-        }
-
-        private void watcher_EventArrived(object sender, EventArrivedEventArgs e)
-        {
-            IList<DriveInfoModel> currentList = drives.GetDrives();
-            IList<DriveInfoModel> previousList = DriveInfoCollection.ToList();
-
-            if (currentList.Count > previousList.Count)
-            {
-                foreach (var drive in currentList)
-                {
-                    if (!DriveInfoCollection.Any(p => p.ToString().Equals(drive.ToString())))
-                    {
-                        DriveInfoCollection.Add(drive);
-                    }
-                }
-            }
-            else
-            {
-                foreach (var drive in previousList)
-                {
-                    if (!currentList.Any(p => p.ToString().Equals(drive.ToString())))
-                    {
-                        DriveInfoCollection.Remove(drive);
-                    }
-                }
-            }
-        }
-    }
+   }
 }

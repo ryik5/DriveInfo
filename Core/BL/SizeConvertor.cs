@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Models;
+using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
@@ -9,6 +10,9 @@ namespace Core.BL
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value is null)
+                return "0.00 GB";
+
             double data = (double)value;
             string result;
 

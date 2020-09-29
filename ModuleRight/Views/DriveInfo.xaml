@@ -38,8 +38,8 @@
         <TextBlock Margin="30 0 0 0" Grid.Column="1" Grid.Row="3">
             <TextBlock.Text>
                 <MultiBinding  Converter="{StaticResource mySizesConverter}">
-                    <Binding Path="FreeSpace"/>
-                    <Binding Path="TotalSpace"/>
+                    <Binding Path="DriveModel.FreeSpace"/>
+                    <Binding Path="DriveModel.TotalSpace"/>
                 </MultiBinding>
             </TextBlock.Text>
         </TextBlock>
