@@ -9,12 +9,21 @@
         Width="800"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding DisplayName}"
+        Title="{Binding Title}"
         >
     <Grid>
-        <StackPanel>
-            <TextBlock Text="TEXT DEMO"></TextBlock>
-            <TextBlock Text="{Binding DisplayName, FallbackValue=\{TITLE\}}"></TextBlock>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <ContentControl Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" prism:RegionManager.RegionName="TopRegion" />
+        <ContentControl Grid.Column="0" Grid.Row="1" prism:RegionManager.RegionName="LeftRegion" />
+        <ContentControl Grid.Column="1" Grid.Row="1" prism:RegionManager.RegionName="RightRegion" />
+
     </Grid>
 </Window>

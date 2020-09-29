@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ModuleTop.Views
+namespace ModuleRight.Views
 {
     /// <summary>
-    /// Interaction logic for ViewA.xaml
+    /// Interaction logic for MessageList.xaml
     /// </summary>
-    public partial class ViewA : UserControl
+    public partial class DriveInfo : UserControl
     {
-        public ViewA()
+        public DriveInfo()
         {
             InitializeComponent();
         }

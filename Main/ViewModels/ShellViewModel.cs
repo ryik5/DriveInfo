@@ -10,23 +10,23 @@ namespace Main.ViewModels
   public  class ShellViewModel : BindableBase
     {
 
-        #region property DisplayName
+        #region property Title
+
+        private string title = "Drive Info";
 
         /// <summary>
         /// Represent DisplayName property
         /// </summary>
-        public string DisplayName
+        public string Title
         {
-            get => _displayName;
-            set => SetProperty(ref _displayName, value);
+            get => title;
+            set => SetProperty(ref title, value);
         }
 
         /// <summary>
         /// Backing field for property DisplayName
         /// </summary>
-        private string _displayName = "Drive Info";
 
         #endregion
-
     }
 }

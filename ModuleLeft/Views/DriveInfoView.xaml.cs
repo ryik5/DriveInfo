@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ModuleLeft.Views
 {
     /// <summary>
-    /// Interaction logic for ViewA.xaml
+    /// Interaction logic for MessageView.xaml
     /// </summary>
-    public partial class ViewA : UserControl
+    public partial class DriveInfoView : UserControl
     {
-        public ViewA()
+        public DriveInfoView()
         {
             InitializeComponent();
         }
