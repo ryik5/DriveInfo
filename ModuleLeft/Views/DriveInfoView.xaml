@@ -4,24 +4,54 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ModuleLeft.Views"
+              xmlns:bl="clr-namespace:Core.BL;assembly=Core"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True" >
+    <UserControl.Resources>
+        <bl:SizeConvertor x:Key="mySizeConverter" />
+        <bl:SizeAllInfoConvertor x:Key="mySizesConverter" />
+        <bl:BrushColorConverter x:Key="myTextBlockColorConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
+        <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0"  Text="{Binding SelectedDriveInfo.Name}" Margin="5"/>
-        <TextBox Grid.Row="1"  Text="{Binding SelectedDriveInfo.Caption}" Margin="5"/>
-        <TextBox Grid.Row="2"  Text="{Binding SelectedDriveInfo.DriveType}" Margin="5"/>
-        <Button Grid.Row="3"  Command="{Binding SendSelectedDriveInfoCommand}" Content="Send Message" Margin="5"/>
+        
+        <ListBox Grid.Column="0" Grid.Row="1" 
+                 ItemsSource="{Binding Collection}"
+                 SelectedItem="{Binding SelectedDriveInfo}">
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock  Grid.Column="0" Grid.Row="0" FontSize="12" Text="{Binding Path=Name}" >
+
+                        </TextBlock>
+                        <TextBlock Grid.Column="0" Grid.Row="1" FontSize="8" Text="{Binding Path=Type}" />
+                        <TextBlock Grid.Column="1" Grid.Row="1" FontSize="8" Text="{Binding Path=FileSystem}" />
+                        <TextBlock Grid.Column="2" Grid.Row="1" FontSize="8" Text="{Binding Path=TotalSpace, StringFormat= {} {0},Converter={StaticResource mySizeConverter} }" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button   Command="{Binding SendSelectedDriveInfoCommand}" Content="Send Message" Margin="5"/>
     </Grid>
 
 </UserControl>

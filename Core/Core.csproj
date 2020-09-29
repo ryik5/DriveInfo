@@ -49,6 +49,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\BrushColorConverter.cs" />
+    <Compile Include="BL\CollectDrives.cs" />
+    <Compile Include="BL\SizeAllInfoConvertor.cs" />
+    <Compile Include="BL\SizeConvertor.cs" />
     <Compile Include="MessageSentEvent.cs" />
     <Compile Include="Models\DiskType.cs" />
     <Compile Include="Models\DriveInfoModel.cs" />
