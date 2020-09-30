@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleLeft", "ModuleLeft\Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleTop", "ModuleTop\ModuleTop.csproj", "{7CD03234-633E-444E-AA7E-1E2E2F21BAD1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleBackground", "ModuleBackground\ModuleBackground.csproj", "{6B7E14F4-462F-4963-A4FA-0FC4D33E4AE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{7CD03234-633E-444E-AA7E-1E2E2F21BAD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CD03234-633E-444E-AA7E-1E2E2F21BAD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CD03234-633E-444E-AA7E-1E2E2F21BAD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B7E14F4-462F-4963-A4FA-0FC4D33E4AE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B7E14F4-462F-4963-A4FA-0FC4D33E4AE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B7E14F4-462F-4963-A4FA-0FC4D33E4AE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B7E14F4-462F-4963-A4FA-0FC4D33E4AE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

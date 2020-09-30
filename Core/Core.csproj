@@ -54,7 +54,8 @@
     <Compile Include="BL\CollectDrives.cs" />
     <Compile Include="BL\SizeAllInfoConvertor.cs" />
     <Compile Include="BL\SizeConvertor.cs" />
-    <Compile Include="MessageSentEvent.cs" />
+    <Compile Include="CollectionChangedEvent.cs" />
+    <Compile Include="SelectedDriveEvent.cs" />
     <Compile Include="Models\DiskType.cs" />
     <Compile Include="Models\DriveInfoModel.cs" />
     <Compile Include="Models\FileSystem.cs" />

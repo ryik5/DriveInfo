@@ -6,7 +6,7 @@ using Core.Models;
 
 namespace Core
 {
-    public class MessageSentEvent : PubSubEvent<DriveInfoModel>
+    public class SelectedDriveEvent : PubSubEvent<DriveInfoModel>
     {
     }
 }

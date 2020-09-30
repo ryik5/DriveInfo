@@ -11,8 +11,6 @@
              prism:ViewModelLocator.AutoWireViewModel="True" >
     <UserControl.Resources>
         <bl:SizeConvertor x:Key="mySizeConverter" />
-        <bl:SizeAllInfoConvertor x:Key="mySizesConverter" />
-        <bl:BrushColorConverter x:Key="myTextBlockColorConverter" />
     </UserControl.Resources>
     <Grid>
         <ListBox 

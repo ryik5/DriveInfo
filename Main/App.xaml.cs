@@ -27,6 +27,7 @@ namespace Main
             moduleCatalog.AddModule<ModuleTop.ModuleTopModule>();
             moduleCatalog.AddModule<ModuleLeft.ModuleLeftModule>();
             moduleCatalog.AddModule<ModuleRight.ModuleRightModule>();
+            moduleCatalog.AddModule<ModuleBackground.ModuleBackgroundModule>();
         }
 
     }

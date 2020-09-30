@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 using Core.Models;
 using System.Linq;
 using System.Collections.ObjectModel;
+using System;
+using System.ComponentModel;
 
 namespace Core.BL
 {
     public class CollectDrives
     {
-        public ObservableCollection<DriveInfoModel> driveList { get; private set; }
         public IList<DriveInfoModel> GetDrives()
         {
             IList<DriveInfoModel> driveList = new List<DriveInfoModel>();
@@ -33,72 +34,16 @@ namespace Core.BL
 
         private DriveInfoModel GetDriveInfo(DriveInfo d)
         {
-            DriveInfoModel drive = new DriveInfoModel();
-
-            string name = d.Name;
-            double totalSpace = d.TotalSize;
-            double freeSpace = d.TotalFreeSpace;
-            string fileSystem = d.DriveFormat;
-            string mediaType = d.DriveType.ToString();
-
-            drive.Name = name;
-            drive.Caption = name + fileSystem + totalSpace + mediaType;
-            drive.FileSystem = GetFileSystem(fileSystem);
-            drive.Type = GetDriveType(mediaType);
-            drive.TotalSpace = totalSpace;
-            drive.FreeSpace = freeSpace;
-
-            return drive;
-        }
-
-
-        public CollectDrives()
-        {
-            driveList = new ObservableCollection<DriveInfoModel>();
-            driveList.AddRange(GetDrives());
-            watcher = new ManagementEventWatcher();
-          Task.Run(()=>  WatchChanges(watcher));
-        }
-
-
-        private readonly ManagementEventWatcher watcher;
-        public ManagementEventWatcher WatchChanges(ManagementEventWatcher watcher)
-        {
-            WqlEventQuery query = new WqlEventQuery("SELECT * FROM Win32_VolumeChangeEvent WHERE EventType = 2 OR EventType = 3");
-            watcher.EventArrived += new EventArrivedEventHandler(watcher_EventArrived);
-            watcher.Query = query;
-            watcher.Start();
-            watcher.WaitForNextEvent();
-            return watcher;
-        }
-
-        private void watcher_EventArrived(object sender, EventArrivedEventArgs e)
-        {
-            IList<DriveInfoModel> currentList = GetDrives();
-            IList<DriveInfoModel> previousList = driveList.ToList();
-
-            if (currentList.Count > previousList.Count)
+            return new DriveInfoModel
             {
-                foreach (var drive in currentList)
-                {
-                    if (!driveList.Any(p => p.ToString().Equals(drive.ToString())))
-                    {
-                        driveList.Add(drive);
-                    }
-                }
-            }
-            else
-            {
-                foreach (var drive in previousList)
-                {
-                    if (!currentList.Any(p => p.ToString().Equals(drive.ToString())))
-                    {
-                        driveList.Remove(drive);
-                    }
-                }
-            }
+                Name = d.Name,
+                Caption = d.Name + d.TotalFreeSpace + d.TotalSize + d.DriveType.ToString(),
+                FileSystem = GetFileSystem(d.DriveFormat),
+                Type = GetDriveType(d.DriveType.ToString()),
+                TotalSpace = d.TotalSize,
+                FreeSpace = d.TotalFreeSpace
+            };
         }
-        
 
         private FileSystem GetFileSystem(string type)
         {

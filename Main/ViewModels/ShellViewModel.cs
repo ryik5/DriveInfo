@@ -15,7 +15,7 @@ namespace Main.ViewModels
         private string title = "Drive Info";
 
         /// <summary>
-        /// Represent DisplayName property
+        /// Represent Title property
         /// </summary>
         public string Title
         {
@@ -24,7 +24,7 @@ namespace Main.ViewModels
         }
 
         /// <summary>
-        /// Backing field for property DisplayName
+        /// Backing field for property Title
         /// </summary>
 
         #endregion

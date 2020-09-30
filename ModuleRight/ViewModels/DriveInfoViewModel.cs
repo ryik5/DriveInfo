@@ -28,7 +28,7 @@ namespace ModuleRight.ViewModels
 
             _ea = ea;
 
-            _ea.GetEvent<MessageSentEvent>().Subscribe(MessageReceived);
+            _ea.GetEvent<SelectedDriveEvent>().Subscribe(MessageReceived);
         }
 
         private void MessageReceived(DriveInfoModel driveModel)
