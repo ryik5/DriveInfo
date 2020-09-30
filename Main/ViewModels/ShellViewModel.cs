@@ -1,13 +1,11 @@
-﻿using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Core;
+using Core.Models;
+using Prism.Events;
+using Prism.Mvvm;
 
 namespace Main.ViewModels
 {
-  public  class ShellViewModel : BindableBase
+    public class ShellViewModel : BindableBase
     {
 
         #region property Title
@@ -23,10 +21,25 @@ namespace Main.ViewModels
             set => SetProperty(ref title, value);
         }
 
+
+        IEventAggregator _ea;
+
+        public ShellViewModel(IEventAggregator ea)
+        {
+            _ea = ea;
+
+            _ea.GetEvent<SelectedDriveEvent>().Subscribe(MessageReceived);
+        }
+
+        private void MessageReceived(DriveInfoModel driveModel)
+        {
+            if (driveModel?.Name?.Length > 0)
+                Title = "Drive info (" + driveModel?.Name + ")";
+        }
+
         /// <summary>
         /// Backing field for property Title
         /// </summary>
-
         #endregion
     }
 }

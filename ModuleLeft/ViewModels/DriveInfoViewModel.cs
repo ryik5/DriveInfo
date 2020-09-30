@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Core;
 using Core.Models;
 using Core.BL;
@@ -49,8 +48,6 @@ namespace ModuleLeft.ViewModels
             ChangeCollection.Execute();
         }
 
-
-
         public DriveInfoViewModel(IEventAggregator ea)
         {
             _ea = ea;
@@ -61,7 +58,6 @@ namespace ModuleLeft.ViewModels
 
             _ea.GetEvent<CollectionChangedEvent>().Subscribe(CollectionReceived);
         }
-
 
     }
 }
