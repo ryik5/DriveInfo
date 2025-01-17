@@ -1,2 +1,2 @@
-# **Drive info**
+# **Windows drive info**
 Demo project
