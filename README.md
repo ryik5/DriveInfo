@@ -1,2 +1,8 @@
 # **Windows drive info**
-Demo project
+### Demo project ###
+
+Used:
+```
+WPF
+prism
+```
